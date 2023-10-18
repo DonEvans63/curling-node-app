@@ -9,6 +9,11 @@ app.get('/curling', (req, res) => {
     return res.json({ message: 'Curling is the absolute best!' });
 });
 
+app.get('/popularity', (req,res) => {
+    return res.json({message: "Curlings popularity has skyrocked in recent years"})
+})
+
+
 // Local Module
 app.get('/games/:country/:medal', (req, res) => {
     let country = req.params.country
@@ -18,6 +23,25 @@ app.get('/games/:country/:medal', (req, res) => {
         answer: answer
     });
 });
+
+app.get('/standings/:country/:town', (req, res) => {
+    let country = req.params.country
+    let town = req.params.town
+    let answer = games(country, town);
+    return res.json({
+        answer: answer
+    });
+});
+
+app.get('/canada/:percent/:teams', (req, res) => {
+    let percent = req.params.percent
+    let teams = req.params.teams
+    let answer = canada(percent, teams);
+    return res.json({
+        answer: answer
+    });
+});
+
 
 //-----------------------------------------------------
 // test using the core module (fs)
